@@ -1,0 +1,17 @@
+{
+id: product.id,
+name: product.name,
+price: product.price,
+tax: product.tax,
+total: product.total,
+description: product.description,
+is_discounted: product.is_discounted?,
+active_status: product.active_status,
+supplier: ( render partial: "api/suppliers/suppliers.json.jb", locals: {supplier: product.supplier}),
+images: product.images.map { |image| render partial: "api/images/image.json.jb", locals: {image: image} },
+frmatted: {
+            price: number_to_currency(product.price),
+            tax: number_to_currency(product.tax),
+            total: number_to_currency(product.total)
+          }
+} 
