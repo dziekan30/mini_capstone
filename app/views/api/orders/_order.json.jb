@@ -1,13 +1,12 @@
 {
   id: order.id,
   user_id: order.user_id,
-  user: ( render partial: "api/users/user.json.jb", locals: {user: order.user}),
+  user: ( render partial: "api/users/user.json.jb", locals: {user: order.user } ),
   product_id: order.product_id,
-  product: ( render partial: "api/products/product.json.jb", locals: {product: order.product}),
+  product: ( render partial: "api/products/product.json.jb", locals: {product: order.product} ),
   quantity: order.quantity,
-  tax: order.tax,
   subtotal: order.subtotal,
+  tax: order.tax,
   total: order.total,
   price: order.product.price
-
 }
