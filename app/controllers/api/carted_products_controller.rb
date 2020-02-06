@@ -17,11 +17,11 @@ class Api::CartedProductsController < ApplicationController
                                           status: "carted",
                                           )
  
-  if @carted_product.save 
+    @carted_product.save 
     render 'show.json.jb'
-  else
-    rende json: {errors: @carter_product.errors.full_messages}, status: :unprocessable_entity
-  end
+  # else
+  #   rende json: {errors: @carter_product.errors.full_messages}, status: :unprocessable_entity
+  # end
 
   end
 

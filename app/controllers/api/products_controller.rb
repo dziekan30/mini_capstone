@@ -13,7 +13,6 @@ class Api::ProductsController < ApplicationController
     if category_choice
       category = Category.find_by(name: category_choice)
       @products = category.products
-     
     end
     
     if search_term
@@ -21,10 +20,11 @@ class Api::ProductsController < ApplicationController
     end
 
     if discount_option == "true"
-      @products = @products.where("price < ?" , 4)
-    elsif discount_option =~ /\A\d+([.]|)\d{0,2}\z/
-      @products = @products.where("price < ?" , discount_option)
+      @products = @products.where("price < ?" , 1000)
     end
+    # elsif discount_option =~ /\A\d+([.]|)\d{0,2}\z/
+    #   @products = @products.where("price < ?" , discount_option)
+    # end
 
     if sort_attribute && sort_order
       @products = @products.order(sort_attribute => sort_order) 
@@ -55,12 +55,8 @@ class Api::ProductsController < ApplicationController
   end 
 
   def show
-    if current_user
-      @product = Product.find(params[:id])
-      render "show.json.jb"
-    else
-      render json: {}
-    end
+    @product = Product.find(params[:id])
+    render "show.json.jb"
   end
 
   def update
